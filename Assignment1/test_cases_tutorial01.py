@@ -1,6 +1,6 @@
 import tutorial01 as A1
 
-actual_answers = [9, 12, 80, 5, 100, 0, 0.1]
+actual_answers = [9, 12, 80, 5, 100, 0, 0.1, [2, 6, 18, 54], [0]]
 student_answers = []
 
 test_case_1 = A1.add(4, 5)
@@ -23,6 +23,14 @@ student_answers.append(test_case_6)
 
 test_case_7 = A1.power(10, -1)
 student_answers.append(test_case_7)
+
+gp = A1.printGP(2, 3, 4)
+gp = list(gp)
+student_answers.append(gp)
+
+gp = A1.printGP(2, 3, 4.001)  # invalid as n is floating
+gp = list(gp)
+student_answers.append(gp)
 
 print(actual_answers)
 print(student_answers)
