@@ -46,7 +46,21 @@ def divide(num1, num2):
 # You cant use the inbuilt python function x ** y . Write your own function
 def power(num1, num2):  # num1 ^ num2
     # DivisionLogic
-    return power
+    if isinstance(num2, float) and num2 == int(num2):
+        num2 = int(num2)
+    if isinstance(num1, (int, float)) and isinstance(num2, int):
+        if num1 == 0:
+            return 0
+        elif num2 < 0:
+            return 1/power(num1, -1*num2)
+        if num2 == 0:
+            return 1
+        elif num2 % 2 == 0:
+            return power(num1, num2//2)*power(num1, num2//2)
+        else:
+            return num1*power(num1, num2//2)*power(num1, num2//2)
+    else:
+        return 0
 
 
 # Python 3 program to print GP.  geometric Progression

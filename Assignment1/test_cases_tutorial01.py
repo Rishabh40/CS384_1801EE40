@@ -1,6 +1,6 @@
 import tutorial01 as A1
 
-actual_answers = [9, 12, 80, 5]
+actual_answers = [9, 12, 80, 5, 100, 0, 0.1]
 student_answers = []
 
 test_case_1 = A1.add(4, 5)
@@ -15,6 +15,14 @@ student_answers.append(test_case_3)
 test_case_4 = A1.divide(10, 2)
 student_answers.append(test_case_4)
 
+test_case_5 = A1.power(10, 2)
+student_answers.append(test_case_5)
+
+test_case_6 = A1.power(10, 2.08)  # invalid as num2 is not integer
+student_answers.append(test_case_6)
+
+test_case_7 = A1.power(10, -1)
+student_answers.append(test_case_7)
 
 print(actual_answers)
 print(student_answers)
