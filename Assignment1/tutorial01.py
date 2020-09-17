@@ -27,7 +27,7 @@ def multiply(num1, num2):
         multiplication = num1*num2
     else:
         multiplication = 0
-    return multiplication
+    return round(multiplication, 3)
 
 
 # Function to divide two numbers
@@ -39,7 +39,7 @@ def divide(num1, num2):
         division = num1/num2
     else:
         division = 0
-    return division
+    return round(division, 3)
 
 
 # Function to add power function
@@ -56,9 +56,9 @@ def power(num1, num2):  # num1 ^ num2
         if num2 == 0:
             return 1
         elif num2 % 2 == 0:
-            return power(num1, num2//2)*power(num1, num2//2)
+            return round(power(num1, num2//2)*power(num1, num2//2), 3)
         else:
-            return num1*power(num1, num2//2)*power(num1, num2//2)
+            return round(num1*power(num1, num2//2)*power(num1, num2//2), 3)
     else:
         return 0
 
@@ -72,7 +72,7 @@ def printGP(a, r, n):
         gp = []
         curr_term = a
         for i in range(0, n):
-            gp.append(curr_term)
+            gp.append(round(curr_term, 3))
             curr_term = r * curr_term
         return gp
     else:
