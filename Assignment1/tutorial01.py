@@ -98,5 +98,16 @@ def printAP(a, d, n):
 # Python 3 program to print HP.   Harmonic Progression
 # You cant use the inbuilt python function. Write your own function
 def printHP(a, d, n):
-    hp = []
-    return hp
+    if isinstance(n, float) and int(n) == n:
+        n = int(n)
+    if isinstance(a, (int, float)) and isinstance(d, (int, float)) and isinstance(n, int) and n >= 0:
+        hp = []
+        curr_term = a
+        for i in range(0, n):
+            if curr_term == 0:
+                return [0]
+            hp.append(round(1/curr_term, 3))
+            curr_term = curr_term + d
+        return hp
+    else:
+        return [0]

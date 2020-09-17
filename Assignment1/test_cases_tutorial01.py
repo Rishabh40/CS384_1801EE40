@@ -1,7 +1,7 @@
 import tutorial01 as A1
 
 actual_answers = [9, 12, 80, 5, 100, 0, 0.1,
-                  [2, 6, 18, 54], [0], [2, 5, 8, 11], [0]]
+                  [2, 6, 18, 54], [0], [2, 5, 8, 11], [0], [0.25, 0.167, 0.125, 0.1], [0]]
 student_answers = []
 
 test_case_1 = A1.add(4, 5)
@@ -40,6 +40,14 @@ student_answers.append(ap)
 ap = A1.printAP(2, 3, 4.009)  # invalid
 ap = list(ap)
 student_answers.append(ap)
+
+hp = A1.printHP(4, 2, 4)
+hp = list(hp)
+student_answers.append(hp)
+
+hp = A1.printHP(4, -1, 5)  # invalid 1/0 form
+hp = list(hp)
+student_answers.append(hp)
 
 print(actual_answers)
 print(student_answers)
