@@ -10,6 +10,11 @@ def check(first_list):
 # Function to compute mean
 def mean(first_list):
     # mean Logic
+    if check(first_list) == False:
+        return 0
+    if len(first_list) == 0:
+        return 0
+    mean_value = round(summation(first_list)/len(first_list), 6)
     return mean_value
 
 
