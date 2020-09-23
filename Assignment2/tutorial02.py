@@ -118,6 +118,24 @@ def mae(first_list, second_list):
 # Function to compute NSE. You cant use Python functions
 def nse(first_list, second_list):
     # nse Logic
+    if len(first_list) is not len(second_list):
+        return 0
+    if check(first_list) == False:
+        return 0
+    if check(second_list) == False:
+        return 0
+    # nse=1-(upper_term/lower_term)
+    upper_term = 0
+    for idx in range(0, len(first_list)):
+        upper_term += (first_list[idx]-second_list[idx]) * \
+            (first_list[idx]-second_list[idx])
+    lower_term = 0
+    mean_val = mean(first_list)
+    for num in first_list:
+        lower_term += (num-mean_val)*(num-mean_val)
+    if lower_term == 0:
+        return 0
+    nse_value = round(1-(upper_term/lower_term), 6)
     return nse_value
 
 
