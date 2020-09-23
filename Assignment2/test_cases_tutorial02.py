@@ -6,7 +6,7 @@ actual_answers = [0.558, 0.641, 0.302, 0.091, -0.389,
 student_answers = []
 
 
-x, y = np.loadtxt("results.csv", delimiter=",",
+x, y = np.loadtxt("C:/Users/RISHABH AGARWAL/Downloads/SEM 5/CS384-Python/CS384_1801EE40/Assignment2/results.csv", delimiter=",",
                   usecols=(0, 1), unpack=True, skiprows=1)
 x = list(x)
 y = list(y)
@@ -48,17 +48,17 @@ p = [1, 4, 5, 7, 7, 5, 4]
 q = [5, 7, 2, 4, 8, 9, 1, 9]
 
 # Invalid since length of p & q is not same. #Return 0
-test_case_10 = A2.mae(p, q)
-student_answers.append(test_case_10)
+test_case_12 = A2.mae(p, q)
+student_answers.append(test_case_12)
 
 r = [1, 4, 5, "a", 7, "India", 4]
 # Invalid since list contains non-numeric data-type e.g., string/character #Return 0
-test_case_11 = A2.mean(r)
-student_answers.append(test_case_11)
+test_case_13 = A2.mean(r)
+student_answers.append(test_case_13)
 
 # Invalid since list  r contains non-numeric data-type e.g., string/character #Return 0
-test_case_12 = A2.rmse(p, r)
-student_answers.append(test_case_12)
+test_case_14 = A2.rmse(p, r)
+student_answers.append(test_case_14)
 
 print(actual_answers)
 print(student_answers)
