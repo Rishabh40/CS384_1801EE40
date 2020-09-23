@@ -1,8 +1,15 @@
-# All decimal 3 places
+# All decimal 6 places
+# function to detect invalid cases
+def check(first_list):
+    for num in first_list:
+        if not isinstance(num, (int, float)):
+            return False
+    return True
+
 
 # Function to compute mean
 def mean(first_list):
-    # mean Logic 
+    # mean Logic
     return mean_value
 
 
@@ -58,7 +65,8 @@ def pcc(first_list, second_list):
 def skewness(first_list):
     # Skewness Logic
     return skewness_value
-    
+
+
 def sorting(first_list):
     # Sorting Logic
     return sorted_list
@@ -73,4 +81,10 @@ def kurtosis(first_list):
 # Function to compute sum. You cant use Python functions
 def summation(first_list):
     # sum Logic
+    if check(first_list) == False:
+        return 0
+    summation_value = 0
+    for num in first_list:
+        summation_value += num
+    summation_value = round(summation_value, 6)
     return summation_value
