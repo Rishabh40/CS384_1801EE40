@@ -130,6 +130,20 @@ def pcc(first_list, second_list):
 # Function to compute Skewness. You cant use Python functions
 def skewness(first_list):
     # Skewness Logic
+    if check(first_list) == False:
+        return 0
+    if len(first_list) == 0:
+        return 0
+    mean_val = mean(first_list)
+    standard_deviation_val = standard_deviation(first_list)
+    if standard_deviation_val == 0:
+        return 0
+    cubic_sum = 0
+    for num in first_list:
+        cubic_sum += ((num-mean_val)/standard_deviation_val) * \
+            ((num-mean_val)/standard_deviation_val) * \
+            ((num-mean_val)/standard_deviation_val)
+    skewness_value = round(cubic_sum/len(first_list), 6)
     return skewness_value
 
 
