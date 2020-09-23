@@ -26,7 +26,8 @@ def median(first_list):
     # median Logic
     if check(first_list) == False:
         return 0
-    sorted_list = sorting(first_list)
+    unsorted_list = first_list.copy()
+    sorted_list = sorting(unsorted_list)
     median_value = 0
     middle_idx = int(len(sorted_list)/2)
     if len(sorted_list) % 2 == 0:
@@ -231,7 +232,7 @@ def sorting(first_list):
     # Sorting Logic
     if check(first_list) == False:
         return 0
-    sorted_list = first_list
+    sorted_list = first_list.copy()
     mergeSort(sorted_list, 0, len(first_list)-1)
     return sorted_list
 
