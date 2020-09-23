@@ -100,6 +100,18 @@ def mse(first_list, second_list):
 # Function to compute mae. You cant use Python functions
 def mae(first_list, second_list):
     # mae Logic
+    if len(first_list) is not len(second_list):
+        return 0
+    if check(first_list) == False:
+        return 0
+    if check(second_list) == False:
+        return 0
+    if len(first_list) == 0:
+        return 0
+    absolute_diff_sum = 0
+    for idx in range(0, len(first_list)):
+        absolute_diff_sum += abs(first_list[idx]-second_list[idx])
+    mae_value = round(absolute_diff_sum/len(first_list), 6)
     return mae_value
 
 
