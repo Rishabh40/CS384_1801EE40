@@ -1,11 +1,13 @@
+import numpy as np
 import tutorial02 as A2
 
-actual_answers = [0.558, 0.641, 0.302, 0.091, -0.389, -1.003, 0.475, 0.226, 0.404, -1.108, 0.051, 0, 0, 0]
+actual_answers = [0.558, 0.641, 0.302, 0.091, -0.389,
+                  1.997, 0.475, 0.226, 0.404, -1.476, 0.051, 0, 0, 0]
 student_answers = []
 
-import numpy as np
 
-x, y = np.loadtxt("results.csv", delimiter=",", usecols=(0, 1), unpack=True, skiprows=1)
+x, y = np.loadtxt("results.csv", delimiter=",",
+                  usecols=(0, 1), unpack=True, skiprows=1)
 x = list(x)
 y = list(y)
 
@@ -45,14 +47,17 @@ student_answers.append(test_case_11)
 p = [1, 4, 5, 7, 7, 5, 4]
 q = [5, 7, 2, 4, 8, 9, 1, 9]
 
-test_case_10 = A2.mae(p, q)  # Invalid since length of p & q is not same. #Return 0
+# Invalid since length of p & q is not same. #Return 0
+test_case_10 = A2.mae(p, q)
 student_answers.append(test_case_10)
 
 r = [1, 4, 5, "a", 7, "India", 4]
-test_case_11 = A2.mean(r)  # Invalid since list contains non-numeric data-type e.g., string/character #Return 0
+# Invalid since list contains non-numeric data-type e.g., string/character #Return 0
+test_case_11 = A2.mean(r)
 student_answers.append(test_case_11)
 
-test_case_12 = A2.rmse(p, r)  # Invalid since list  r contains non-numeric data-type e.g., string/character #Return 0
+# Invalid since list  r contains non-numeric data-type e.g., string/character #Return 0
+test_case_12 = A2.rmse(p, r)
 student_answers.append(test_case_12)
 
 print(actual_answers)
@@ -62,7 +67,8 @@ total_test_cases = len(actual_answers)
 count_of_correct_test_cases = 0
 
 for x, y in zip(actual_answers, student_answers):
-    if x == y:
+    if x == round(y, 3):
         count_of_correct_test_cases += 1
 
-print(f"Test Cases Passed = '{count_of_correct_test_cases}'  / '{total_test_cases}'")
+print(
+    f"Test Cases Passed = '{count_of_correct_test_cases}'  / '{total_test_cases}'")
