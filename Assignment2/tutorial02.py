@@ -1,5 +1,8 @@
+import math
 # All decimal 6 places
 # function to detect invalid cases
+
+
 def check(first_list):
     for num in first_list:
         if not isinstance(num, (int, float)):
@@ -27,6 +30,11 @@ def median(first_list):
 # Function to compute Standard deviation. You cant use Python functions
 def standard_deviation(first_list):
     # Standard deviation Logic
+    if check(first_list) == False:
+        return 0
+    if len(first_list) == 0:
+        return 0
+    standard_deviation_value = round(math.sqrt(variance(first_list)), 6)
     return standard_deviation_value
 
 
