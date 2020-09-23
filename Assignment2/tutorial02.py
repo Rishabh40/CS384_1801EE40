@@ -33,6 +33,15 @@ def standard_deviation(first_list):
 # Function to compute variance. You cant use Python functions
 def variance(first_list):
     # variance Logic
+    if check(first_list) == False:
+        return 0
+    if len(first_list) == 0:
+        return 0
+    squared_diff_sum = 0
+    mean_val = mean(first_list)
+    for num in first_list:
+        squared_diff_sum += (num-mean_val)*(num-mean_val)
+    variance_value = round(squared_diff_sum/len(first_list), 6)
     return variance_value
 
 
