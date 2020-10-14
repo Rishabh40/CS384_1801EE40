@@ -44,6 +44,49 @@ def country():
 
 def email_domain_extract():
     # Read csv and process
+    path = 'C:/Users/RISHABH AGARWAL/Downloads/SEM 5/CS384-Python/CS384_1801EE40/Assignment3/analytics'
+    if os.path.isdir(path):
+        spe_path = 'C:/Users/RISHABH AGARWAL/Downloads/SEM 5/CS384-Python/CS384_1801EE40/Assignment3/analytics/email_domain'
+        if os.path.isdir(spe_path):
+            shutil.rmtree(spe_path)
+        curr_path = os.path.join(path, 'email_domain')
+        os.mkdir(curr_path)
+    else:
+        parent_dir = 'C:/Users/RISHABH AGARWAL/Downloads/SEM 5/CS384-Python/CS384_1801EE40/Assignment3'
+        curr_path = os.path.join(parent_dir, 'analytics')
+        os.mkdir(curr_path)
+        final_path = os.path.join(curr_path, 'email_domain')
+        os.mkdir(final_path)
+    with open('C:/Users/RISHABH AGARWAL/Downloads/SEM 5/CS384-Python/CS384_1801EE40/Assignment3/studentinfo_cs384.csv', 'r') as file:
+        reader = csv.reader(file)
+        pattern = re.compile(
+            r'^[a-zA-Z0-9._-]+@[a-zA-Z0-9-]+\.[a-zA-Z.]{2,18}$')
+        for row in reader:
+            if(row[0] == 'id'):
+                header = row
+            else:
+                if re.match(pattern, row[3]):
+                    temp = row[3][row[3].index('@')+1:]
+                    domain = temp[:temp.index('.')]
+                    domain_path = os.path.join(
+                        'C:/Users/RISHABH AGARWAL/Downloads/SEM 5/CS384-Python/CS384_1801EE40/Assignment3/analytics/email_domain', domain+'.csv')
+                    if not os.path.isfile(domain_path):
+                        with open(domain_path, 'a', newline='') as file:
+                            head = csv.writer(file)
+                            head.writerow(header)
+                    with open(domain_path, 'a', newline='') as file:
+                        data = csv.writer(file)
+                        data.writerow(row)
+                else:
+                    domain_path = os.path.join(
+                        'C:/Users/RISHABH AGARWAL/Downloads/SEM 5/CS384-Python/CS384_1801EE40/Assignment3/analytics/email_domain', 'misc.csv')
+                    if not os.path.isfile(domain_path):
+                        with open(domain_path, 'a', newline='') as file:
+                            head = csv.writer(file)
+                            head.writerow(header)
+                    with open(domain_path, 'a', newline='') as file:
+                        data = csv.writer(file)
+                        data.writerow(row)
     pass
 
 
@@ -160,4 +203,4 @@ def new_file_sort():
     pass
 
 
-blood_group()
+email_domain_extract()
