@@ -1,4 +1,6 @@
 import csv
+import re
+import os
 
 
 def course():
@@ -18,6 +20,26 @@ def email_domain_extract():
 
 def gender():
     # Read csv and process
+    open('C:/Users/RISHABH AGARWAL/Downloads/SEM 5/CS384-Python/CS384_1801EE40/Assignment3/analytics/gender/male.csv', 'w').close()
+    open('C:/Users/RISHABH AGARWAL/Downloads/SEM 5/CS384-Python/CS384_1801EE40/Assignment3/analytics/gender/female.csv', 'w').close()
+    with open('C:/Users/RISHABH AGARWAL/Downloads/SEM 5/CS384-Python/CS384_1801EE40/Assignment3/studentinfo_cs384.csv', 'r') as file:
+        reader = csv.reader(file)
+        for row in reader:
+            if row[4] == "gender":
+                with open('C:/Users/RISHABH AGARWAL/Downloads/SEM 5/CS384-Python/CS384_1801EE40/Assignment3/analytics/gender/female.csv', 'a') as female:
+                    writer = csv.writer(female)
+                    writer.writerow(row)
+                with open('C:/Users/RISHABH AGARWAL/Downloads/SEM 5/CS384-Python/CS384_1801EE40/Assignment3/analytics/gender/male.csv', 'a') as male:
+                    writer = csv.writer(male)
+                    writer.writerow(row)
+            elif row[4] == "Female":
+                with open('C:/Users/RISHABH AGARWAL/Downloads/SEM 5/CS384-Python/CS384_1801EE40/Assignment3/analytics/gender/female.csv', 'a') as female:
+                    writer = csv.writer(female)
+                    writer.writerow(row)
+            else:
+                with open('C:/Users/RISHABH AGARWAL/Downloads/SEM 5/CS384-Python/CS384_1801EE40/Assignment3/analytics/gender/male.csv', 'a') as male:
+                    writer = csv.writer(male)
+                    writer.writerow(row)
     pass
 
 
@@ -40,3 +62,6 @@ def blood_group():
 def new_file_sort():
     # Read csv and process
     pass
+
+
+gender()
