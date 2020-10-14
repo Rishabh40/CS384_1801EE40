@@ -11,6 +11,34 @@ def course():
 
 def country():
     # Read csv and process
+    path = 'C:/Users/RISHABH AGARWAL/Downloads/SEM 5/CS384-Python/CS384_1801EE40/Assignment3/analytics'
+    if os.path.isdir(path):
+        spe_path = 'C:/Users/RISHABH AGARWAL/Downloads/SEM 5/CS384-Python/CS384_1801EE40/Assignment3/analytics/country'
+        if os.path.isdir(spe_path):
+            shutil.rmtree(spe_path)
+        curr_path = os.path.join(path, 'country')
+        os.mkdir(curr_path)
+    else:
+        parent_dir = 'C:/Users/RISHABH AGARWAL/Downloads/SEM 5/CS384-Python/CS384_1801EE40/Assignment3'
+        curr_path = os.path.join(parent_dir, 'analytics')
+        os.mkdir(curr_path)
+        final_path = os.path.join(curr_path, 'country')
+        os.mkdir(final_path)
+    with open('C:/Users/RISHABH AGARWAL/Downloads/SEM 5/CS384-Python/CS384_1801EE40/Assignment3/studentinfo_cs384.csv', 'r') as file:
+        reader = csv.reader(file)
+        for row in reader:
+            if(row[0] == 'id'):
+                header = row
+            else:
+                country_path = os.path.join(
+                    'C:/Users/RISHABH AGARWAL/Downloads/SEM 5/CS384-Python/CS384_1801EE40/Assignment3/analytics/country', row[2]+'.csv')
+                if not os.path.isfile(country_path):
+                    with open(country_path, 'a', newline='') as file:
+                        head = csv.writer(file)
+                        head.writerow(header)
+                with open(country_path, 'a', newline='') as file:
+                    data = csv.writer(file)
+                    data.writerow(row)
     pass
 
 
