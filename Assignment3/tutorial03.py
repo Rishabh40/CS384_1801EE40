@@ -123,6 +123,34 @@ def state():
 
 def blood_group():
     # Read csv and process
+    path = 'C:/Users/RISHABH AGARWAL/Downloads/SEM 5/CS384-Python/CS384_1801EE40/Assignment3/analytics'
+    if os.path.isdir(path):
+        spe_path = 'C:/Users/RISHABH AGARWAL/Downloads/SEM 5/CS384-Python/CS384_1801EE40/Assignment3/analytics/blood_group'
+        if os.path.isdir(spe_path):
+            shutil.rmtree(spe_path)
+        curr_path = os.path.join(path, 'blood_group')
+        os.mkdir(curr_path)
+    else:
+        parent_dir = 'C:/Users/RISHABH AGARWAL/Downloads/SEM 5/CS384-Python/CS384_1801EE40/Assignment3'
+        curr_path = os.path.join(parent_dir, 'analytics')
+        os.mkdir(curr_path)
+        final_path = os.path.join(curr_path, 'blood_group')
+        os.mkdir(final_path)
+    with open('C:/Users/RISHABH AGARWAL/Downloads/SEM 5/CS384-Python/CS384_1801EE40/Assignment3/studentinfo_cs384.csv', 'r') as file:
+        reader = csv.reader(file)
+        for row in reader:
+            if(row[0] == 'id'):
+                header = row
+            else:
+                blood_path = os.path.join(
+                    'C:/Users/RISHABH AGARWAL/Downloads/SEM 5/CS384-Python/CS384_1801EE40/Assignment3/analytics/blood_group', row[6]+'.csv')
+                if not os.path.isfile(blood_path):
+                    with open(blood_path, 'a', newline='') as file:
+                        head = csv.writer(file)
+                        head.writerow(header)
+                with open(blood_path, 'a', newline='') as file:
+                    data = csv.writer(file)
+                    data.writerow(row)
     pass
 
 
@@ -130,3 +158,6 @@ def blood_group():
 def new_file_sort():
     # Read csv and process
     pass
+
+
+blood_group()
