@@ -3,7 +3,6 @@ import re
 import shutil
 import os
 import datetime
-os.system('cls')
 
 
 def del_create_analytics_folder():
@@ -308,4 +307,29 @@ def blood_group():
 # Create the new file here and also sort it in this function only.
 def new_file_sort():
     # Read csv and process
+    path = './analytics'
+    if not os.path.isdir(path):
+        parent_dir = '.'
+        curr_path = os.path.join(parent_dir, 'analytics')
+        os.mkdir(curr_path)
+    temp = ['id', 'first_name', 'last_name', 'country',
+            'email', 'gender', 'dob', 'blood_group', 'state']
+    with open('./analytics/studentinfo_cs384_names_split.csv', 'a', newline='') as file:
+        head = csv.writer(file)
+        head.writerow(temp)
+    with open('./studentinfo_cs384.csv', 'r') as file:
+        reader = csv.reader(file)
+        for row in reader:
+            if row[0] != 'id':
+                name_split = row[1].split(' ')
+                first_name = name_split[0]
+                l_name = name_split[1:]
+                last_name = ''
+                for name in l_name:
+                    last_name += name+' '
+                temp = [row[0], first_name, last_name, row[2],
+                        row[3], row[4], row[5], row[6], row[7]]
+                with open('./analytics/studentinfo_cs384_names_split.csv', 'a', newline='') as file:
+                    head = csv.writer(file)
+                    head.writerow(temp)
     pass
