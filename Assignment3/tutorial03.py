@@ -4,6 +4,9 @@ import shutil
 import os
 import datetime
 
+# Rishabh Agarwal
+# 1801EE40
+
 
 def del_create_analytics_folder():
     # del the analytics folder including subfolder
@@ -106,19 +109,31 @@ def country():
         os.mkdir(final_path)
     with open('./studentinfo_cs384.csv', 'r') as file:
         reader = csv.reader(file)
+        pattern = re.compile(r'^$')
         for row in reader:
             if(row[0] == 'id'):
                 header = row
             else:
-                country_path = os.path.join(
-                    './analytics/country', row[2]+'.csv')
-                if not os.path.isfile(country_path):
+                if not re.match(pattern, row[2]):
+                    country_path = os.path.join(
+                        './analytics/country', row[2]+'.csv')
+                    if not os.path.isfile(country_path):
+                        with open(country_path, 'a', newline='') as file:
+                            head = csv.writer(file)
+                            head.writerow(header)
                     with open(country_path, 'a', newline='') as file:
-                        head = csv.writer(file)
-                        head.writerow(header)
-                with open(country_path, 'a', newline='') as file:
-                    data = csv.writer(file)
-                    data.writerow(row)
+                        data = csv.writer(file)
+                        data.writerow(row)
+                else:
+                    country_path = os.path.join(
+                        './analytics/country', 'misc.csv')
+                    if not os.path.isfile(country_path):
+                        with open(country_path, 'a', newline='') as file:
+                            head = csv.writer(file)
+                            head.writerow(header)
+                    with open(country_path, 'a', newline='') as file:
+                        data = csv.writer(file)
+                        data.writerow(row)
     pass
 
 
@@ -199,9 +214,13 @@ def gender():
                 with open('./analytics/gender/female.csv', 'a', newline='') as female:
                     writer = csv.writer(female)
                     writer.writerow(row)
-            else:
+            elif row[4] == "Male":
                 with open('./analytics/gender/male.csv', 'a', newline='') as male:
                     writer = csv.writer(male)
+                    writer.writerow(row)
+            else:
+                with open('./analytics/gender/misc.csv', 'a', newline='') as misc:
+                    writer = csv.writer(misc)
                     writer.writerow(row)
     pass
 
@@ -312,19 +331,31 @@ def state():
         os.mkdir(final_path)
     with open('./studentinfo_cs384.csv', 'r') as file:
         reader = csv.reader(file)
+        pattern = re.compile(r'^$')
         for row in reader:
             if(row[0] == 'id'):
                 header = row
             else:
-                state_path = os.path.join(
-                    './analytics/state', row[7]+'.csv')
-                if not os.path.isfile(state_path):
+                if not re.match(pattern, row[7]):
+                    state_path = os.path.join(
+                        './analytics/state', row[7]+'.csv')
+                    if not os.path.isfile(state_path):
+                        with open(state_path, 'a', newline='') as file:
+                            head = csv.writer(file)
+                            head.writerow(header)
                     with open(state_path, 'a', newline='') as file:
-                        head = csv.writer(file)
-                        head.writerow(header)
-                with open(state_path, 'a', newline='') as file:
-                    data = csv.writer(file)
-                    data.writerow(row)
+                        data = csv.writer(file)
+                        data.writerow(row)
+                else:
+                    state_path = os.path.join(
+                        './analytics/state', 'mics.csv')
+                    if not os.path.isfile(state_path):
+                        with open(state_path, 'a', newline='') as file:
+                            head = csv.writer(file)
+                            head.writerow(header)
+                    with open(state_path, 'a', newline='') as file:
+                        data = csv.writer(file)
+                        data.writerow(row)
     pass
 
 
@@ -345,19 +376,31 @@ def blood_group():
         os.mkdir(final_path)
     with open('./studentinfo_cs384.csv', 'r') as file:
         reader = csv.reader(file)
+        pattern = re.compile(r'^(A|B|AB|O)[+-]$', re.IGNORECASE)
         for row in reader:
             if(row[0] == 'id'):
                 header = row
             else:
-                blood_path = os.path.join(
-                    './analytics/blood_group', row[6]+'.csv')
-                if not os.path.isfile(blood_path):
+                if re.match(pattern, row[6]):
+                    blood_path = os.path.join(
+                        './analytics/blood_group', row[6].lower()+'.csv')
+                    if not os.path.isfile(blood_path):
+                        with open(blood_path, 'a', newline='') as file:
+                            head = csv.writer(file)
+                            head.writerow(header)
                     with open(blood_path, 'a', newline='') as file:
-                        head = csv.writer(file)
-                        head.writerow(header)
-                with open(blood_path, 'a', newline='') as file:
-                    data = csv.writer(file)
-                    data.writerow(row)
+                        data = csv.writer(file)
+                        data.writerow(row)
+                else:
+                    blood_path = os.path.join(
+                        './analytics/blood_group', 'misc.csv')
+                    if not os.path.isfile(blood_path):
+                        with open(blood_path, 'a', newline='') as file:
+                            head = csv.writer(file)
+                            head.writerow(header)
+                    with open(blood_path, 'a', newline='') as file:
+                        data = csv.writer(file)
+                        data.writerow(row)
     pass
 
 
