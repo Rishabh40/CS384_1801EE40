@@ -371,6 +371,7 @@ def new_file_sort():
         os.mkdir(curr_path)
     temp = ['id', 'first_name', 'last_name', 'country',
             'email', 'gender', 'dob', 'blood_group', 'state']
+    header = temp
     with open('./analytics/studentinfo_cs384_names_split.csv', 'a', newline='') as file:
         head = csv.writer(file)
         head.writerow(temp)
@@ -389,4 +390,18 @@ def new_file_sort():
                 with open('./analytics/studentinfo_cs384_names_split.csv', 'a', newline='') as file:
                     head = csv.writer(file)
                     head.writerow(temp)
+    unsorted_list = []
+    with open('./analytics/studentinfo_cs384_names_split.csv', 'r') as file:
+        reader = csv.reader(file)
+        for row in reader:
+            if(row[0] != 'id'):
+                unsorted_list.append(row)
+    with open('./analytics/studentinfo_cs384_names_split_sorted_first_name.csv', 'a', newline='') as file:
+        writer = csv.writer(file)
+        writer.writerow(header)
+    sorted_list = sorted(unsorted_list, key=lambda l: l[1])
+    with open('./analytics/studentinfo_cs384_names_split_sorted_first_name.csv', 'a', newline='') as file:
+        writer = csv.writer(file)
+        for row in sorted_list:
+            writer.writerow(row)
     pass
