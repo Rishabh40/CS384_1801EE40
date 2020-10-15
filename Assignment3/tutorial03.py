@@ -29,6 +29,63 @@ def date_validation(day, month, year):
 
 def course():
     # Read csv and process
+    path = './analytics'
+    if os.path.isdir(path):
+        spe_path = './analytics/course'
+        if os.path.isdir(spe_path):
+            shutil.rmtree(spe_path)
+        curr_path = os.path.join(path, 'course')
+        os.mkdir(curr_path)
+    else:
+        parent_dir = '.'
+        curr_path = os.path.join(parent_dir, 'analytics')
+        os.mkdir(curr_path)
+        final_path = os.path.join(curr_path, 'course')
+        os.mkdir(final_path)
+    path = './analytics/course'
+    with open('studentinfo_cs384.csv', 'r') as file:
+        data = csv.DictReader(file)
+        misc = []
+        header = ['id', 'full_name', 'country', 'email',
+                  'gender', 'dob', 'blood_group', 'state']
+        program_code = {'01': "btech", '11': "mtech", '12': "msc", '21': "phd"}
+        roll_number = re.compile(r'^[0-9]{2}[0-2]{2}[a-zA-Z]{2}[0-9]{2}$')
+
+        for row in data:
+            roll_no = row['id']
+            if not re.match(roll_number, roll_no):
+                misc.append(row)
+            else:
+                year_of_admission = roll_no[0:2]
+                course = program_code[roll_no[2:4]]
+                branch = (roll_no[4:6]).lower()
+
+                path1 = path
+                path1 += "\\"+branch
+                if not os.path.isdir(path1):
+                    os.mkdir(path1)
+
+                path1 += "\\"+course
+                if not os.path.isdir(path1):
+                    os.mkdir(path1)
+
+                info_file = path1 + "\\" + year_of_admission + \
+                    '_' + branch + '_' + course + ".csv"
+
+                if not os.path.isfile(info_file):
+                    with open(info_file, 'a', newline='') as file:
+                        data = csv.DictWriter(file, fieldnames=header)
+                        data.writeheader()
+
+                with open(info_file, 'a', newline='') as file:
+                    data = csv.DictWriter(file, fieldnames=header)
+                    data.writerow(row)
+
+        path += '\misc.csv'
+        with open(path, 'a', newline='') as file:
+            data = csv.DictWriter(file, fieldnames=header)
+            data.writeheader()
+            data.writerows(misc)
     pass
 
 
