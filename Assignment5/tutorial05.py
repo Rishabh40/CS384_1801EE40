@@ -30,4 +30,35 @@ def rename_FIR(paddingseason, paddingepisode):
     pass
 
 
-rename_FIR(5, 5)
+#rename_FIR(5, 5)
+
+
+def rename_Game_of_Thrones(paddingseason, paddingepisode):
+    # GOT rename Logic
+    path = r'./Subtitles/Game of Thrones'
+    seasonno = ''
+    episodeno = ''
+    episodename = ''
+    for filename in os.listdir(path):
+        lis = filename.split(' - ')
+        seasonno = lis[1][0:lis[1].index('x')]
+        episodeno = lis[1][lis[1].index('x')+1:]
+        episodename = lis[2][0:lis[2].index('.')]
+        while len(seasonno) < paddingseason:
+            seasonno = '0'+seasonno
+        if len(seasonno) > paddingseason:
+            seasonno = seasonno[-1*paddingseason:]
+        while len(episodeno) < paddingepisode:
+            episodeno = '0'+episodeno
+        if len(episodeno) > paddingepisode:
+            episodeno = episodeno[-1*paddingepisode:]
+        if filename.endswith(".mp4"):
+            os.rename(path+'/'+filename, path+'/' +
+                      lis[0]+' - Season '+seasonno+' Episode '+episodeno+' - '+episodename+'.mp4')
+        if filename.endswith('.srt'):
+            os.rename(path+'/'+filename, path+'/' +
+                      lis[0]+' - Season '+seasonno+' Episode '+episodeno+' - '+episodename+'.srt')
+    pass
+
+
+rename_Game_of_Thrones(2, 3)
