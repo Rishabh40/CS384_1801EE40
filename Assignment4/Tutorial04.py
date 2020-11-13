@@ -55,3 +55,34 @@ with open('./acad_res_stud_grades.csv', 'r') as file:
                     f = csv.writer(invalid)
                     f.writerow([row[1], row[4], row[5],
                                 row[8], row[6], row[2]])
+
+
+# Now we are Creating overall files and also deleting some individual files where
+# In between semesters are missing
+Data = []
+for roll in List_of_Rolls:
+    # iterating in all roll calls
+    with open('./grades/'+roll+'_individual.csv', 'r') as file:
+        reader = csv.reader(file)
+        for row in reader:
+            if re.fullmatch(CourseCode_Pattern, row[0]):
+                Data.append(row)
+
+    sorted_data = sorted(Data, key=lambda l: int(l[4]))
+
+    Data.clear()  # Clear current roll data
+    Prev_sem = '0'  # Imaginary sem to check in between missing sems
+    status = True   # Valid Status
+    for row in sorted_data:
+        if int(row[4])-int(Prev_sem) > 1:
+            status = False
+            break
+        Prev_sem = row[4]
+    if status == False:
+        for row in sorted_data:
+            Inv_row = [roll, row[0], row[1], row[2], row[3], row[4]]
+            with open('./grades/misc.csv', 'a', newline='') as file:
+                f = csv.writer(file)
+                f.writerow(Inv_row)
+        os.remove('./grades/'+roll+'_individual.csv')  # removing invalid file
+        continue
