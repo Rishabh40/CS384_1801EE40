@@ -61,4 +61,34 @@ def rename_Game_of_Thrones(paddingseason, paddingepisode):
     pass
 
 
-rename_Game_of_Thrones(2, 3)
+#rename_Game_of_Thrones(2, 3)
+
+
+def rename_Sherlock(paddingseason, paddingepisode):
+    # sherlock rename Logic
+    path = r'./Subtitles/Sherlock'
+    seasonno = ''
+    episodeno = ''
+    for filename in os.listdir(path):
+        temp = filename[filename.index('.')+1:]
+        seasonno = temp[1]+temp[2]
+        temp2 = temp[temp.index('E')+1:]
+        episodeno = temp2[0]+temp2[1]
+        while len(seasonno) < paddingseason:
+            seasonno = '0'+seasonno
+        if len(seasonno) > paddingseason:
+            seasonno = seasonno[-1*paddingseason:]
+        while len(episodeno) < paddingepisode:
+            episodeno = '0'+episodeno
+        if len(episodeno) > paddingepisode:
+            episodeno = episodeno[-1*paddingepisode:]
+        if filename.endswith(".mp4"):
+            os.rename(path+'/'+filename, path+'/'+'Sherlock' +
+                      ' - Season '+seasonno+' Episode '+episodeno+'.mp4')
+        if filename.endswith('.srt'):
+            os.rename(path+'/'+filename, path+'/'+'Sherlock' +
+                      ' - Season '+seasonno+' Episode '+episodeno+'.srt')
+    pass
+
+
+rename_Sherlock(2, 4)
