@@ -86,3 +86,55 @@ for roll in List_of_Rolls:
                 f.writerow(Inv_row)
         os.remove('./grades/'+roll+'_individual.csv')  # removing invalid file
         continue
+
+    # overall files header
+    with open('./grades/'+roll+'_overall.csv', 'a', newline='') as Roll_file:
+        f = csv.writer(Roll_file)
+        f.writerow(['Roll: '+roll])
+        f.writerow(['Semester', 'Semester Credits', 'Semester Credits Cleared',
+                    'SPI', 'Total Credits', 'Total Credits Cleared', 'CPI'])
+
+    # Grades Map
+    grades = {'AA': 10, 'AB': 9, 'BB': 8, 'BC': 7,
+              'CC': 6, 'CD': 5, 'DD': 4, 'F': 0, 'I': 0}
+
+    # Variables to calculate CPI and SPI
+    currenttotal = 0
+    currenttotalcleared = 0
+    overalltotal = 0
+    overalltotalcleared = 0
+    cursem = 'r'  # Initialization to Random value
+    Spiforcredits = 0
+    Cpiforcredits = 0
+    for row in sorted_data:
+        if cursem == 'r':
+            cursem = row[4]
+        if cursem == row[4]:
+            currenttotal += int(row[1])
+            if grades[row[3]] > 0:
+                currenttotalcleared += int(row[1])
+                overalltotalcleared += int(row[1])
+            Spiforcredits += (grades[row[3]]*int(row[1]))
+            overalltotal += int(row[1])
+        else:
+            Cpiforcredits += Spiforcredits
+            entry = [cursem, currenttotal, currenttotalcleared, round(Spiforcredits /
+                                                                      currenttotal, 2), overalltotal, overalltotalcleared, round(Cpiforcredits/overalltotal, 2)]
+            # filling overall files entries
+            with open('./grades/'+roll+'_overall.csv', 'a', newline='') as Roll_file:
+                f = csv.writer(Roll_file)
+                f.writerow(entry)
+            cursem = row[4]
+            currenttotal = int(row[1])
+            if grades[row[3]] > 0:
+                currenttotalcleared = int(row[1])
+                overalltotalcleared += int(row[1])
+            Spiforcredits = (grades[row[3]]*int(row[1]))
+            overalltotal += int(row[1])
+
+    Cpiforcredits += Spiforcredits
+    entry = [cursem, currenttotal, currenttotalcleared, round(Spiforcredits /
+                                                              currenttotal, 2), overalltotal, overalltotalcleared, round(Cpiforcredits/overalltotal, 2)]
+    with open('./grades/'+roll+'_overall.csv', 'a', newline='') as Roll_file:
+        f = csv.writer(Roll_file)
+        f.writerow(entry)
