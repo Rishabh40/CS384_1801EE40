@@ -41,8 +41,8 @@ with open('./acad_res_stud_grades.csv', 'r') as file:
                     List_of_Rolls.append(row[1])
                     with open('./grades/'+File_Name, 'a', newline='') as Roll_file:
                         f = csv.writer(Roll_file)
-                        f.writerow(['Roll: '+row[1]])
-                        f.writerow(['Semester Wise Details'])
+                        f.writerow(['Roll: '+row[1], "", "", "", ""])
+                        f.writerow(['Semester Wise Details', "", "", "", ""])
                         f.writerow(
                             ['Subject', 'Credits', 'Type', 'Grade', 'Sem'])
                 entry = [row[4], row[5], row[8], row[6], row[2]]
@@ -90,7 +90,7 @@ for roll in List_of_Rolls:
     # overall files header
     with open('./grades/'+roll+'_overall.csv', 'a', newline='') as Roll_file:
         f = csv.writer(Roll_file)
-        f.writerow(['Roll: '+roll])
+        f.writerow(['Roll: '+roll, "", "", "", "", "", ""])
         f.writerow(['Semester', 'Semester Credits', 'Semester Credits Cleared',
                     'SPI', 'Total Credits', 'Total Credits Cleared', 'CPI'])
 
