@@ -30,7 +30,7 @@ def rename_FIR(paddingseason, paddingepisode):
     pass
 
 
-#rename_FIR(5, 5)
+rename_FIR(5, 5)
 
 
 def rename_Game_of_Thrones(paddingseason, paddingepisode):
@@ -61,7 +61,7 @@ def rename_Game_of_Thrones(paddingseason, paddingepisode):
     pass
 
 
-#rename_Game_of_Thrones(2, 3)
+rename_Game_of_Thrones(2, 3)
 
 
 def rename_Sherlock(paddingseason, paddingepisode):
@@ -91,7 +91,7 @@ def rename_Sherlock(paddingseason, paddingepisode):
     pass
 
 
-#rename_Sherlock(2, 4)
+rename_Sherlock(2, 4)
 
 
 def rename_Suits(paddingseason, paddingepisode):
@@ -132,7 +132,7 @@ def rename_Suits(paddingseason, paddingepisode):
     pass
 
 
-#rename_Suits(2, 5)
+rename_Suits(2, 5)
 
 
 def rename_How_I_Met_Your_Mother(paddingseason, paddingepisode):
@@ -149,15 +149,31 @@ def rename_How_I_Met_Your_Mother(paddingseason, paddingepisode):
         temp2 = temp1[0].split('.720')
         temp3 = temp2[0].split('.1080')
         temp4 = temp3[0].split('.HDTV')
-        episodename = temp4[0].split('.en')[0]
+        temp5 = temp4[0].split('.fov')
+        temp6 = temp5[0].split('.FoV')
+        episodename = temp6[0].split('.en')[0]
+        temp = episodeno.split('-')
+        flag = 0
+        if len(temp) == 2:
+            flag = 1
+            while len(temp[0]) < paddingepisode:
+                temp[0] = '0'+temp[0]
+            if len(temp[0]) > paddingepisode:
+                temp[0] = temp[0][-1*paddingepisode:]
+            while len(temp[1]) < paddingepisode:
+                temp[1] = '0'+temp[1]
+            if len(temp[1]) > paddingepisode:
+                temp[1] = temp[1][-1*paddingepisode:]
+            episodeno = temp[0]+'-'+temp[1]
         while len(seasonno) < paddingseason:
             seasonno = '0'+seasonno
         if len(seasonno) > paddingseason:
             seasonno = seasonno[-1*paddingseason:]
-        while len(episodeno) < paddingepisode:
-            episodeno = '0'+episodeno
-        if len(episodeno) > paddingepisode:
-            episodeno = episodeno[-1*paddingepisode:]
+        if flag == 0:
+            while len(episodeno) < paddingepisode:
+                episodeno = '0'+episodeno
+            if len(episodeno) > paddingepisode:
+                episodeno = episodeno[-1*paddingepisode:]
         if filename.endswith(".mp4"):
             if not os.path.isfile(path+'/'+lis[0]+' - Season '+seasonno+' Episode '+episodeno+' - '+episodename+'.mp4'):
                 os.rename(path+'/'+filename, path+'/' +
