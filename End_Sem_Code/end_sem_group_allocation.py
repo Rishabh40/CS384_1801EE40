@@ -16,8 +16,39 @@ def deletion():
 def branch_classification(filename):
     # this function reads dat from input files and classify that according
     # to branches and creates csv files for diff. branches with stats file too.
-
-    return
+    with open(r'./'+filename, 'r') as file:
+        mp = csv.reader(file)
+        header = []
+        dic = {}
+        for row in mp:
+            if header == []:
+                header = row
+            else:
+                branch = row[0][4:6]
+                branch = branch.upper()
+                if dic.get(branch) == None:
+                    if os.path.isfile(r'./groups/'+branch+'.csv'):
+                        os.remove(r'./groups/'+branch+'.csv')
+                    with open(r'./groups/'+branch+'.csv', 'a+', newline="") as file:
+                        mp = csv.writer(file)
+                        mp.writerow(header)
+                    dic[branch] = 0
+                dic[branch] += 1
+                with open(r'./groups/'+branch+'.csv', 'a+', newline="") as file:
+                    mp = csv.writer(file)
+                    mp.writerow(row)
+        with open(r'./groups/branch_strength.csv', 'w', newline="") as file:
+            mp = csv.writer(file)
+            mp.writerow(["BRANCH_CODE", "STRENGTH"])
+        Data = []
+        for branch in dic.keys():
+            Data.append([branch, dic[branch]])
+        Data = sorted(Data, key=lambda x: int(x[1]), reverse=True)
+        for row in Data:
+            with open(r'./groups/branch_strength.csv', 'a+', newline="") as file:
+                mp = csv.writer(file)
+                mp.writerow(row)
+    return len(Data), Data
 
 
 def group_classification(number_of_groups, no_of_branches, Data):
