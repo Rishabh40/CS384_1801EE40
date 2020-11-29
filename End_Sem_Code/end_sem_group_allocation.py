@@ -7,7 +7,9 @@ import shutil
 
 def deletion():
     # used for deletion of already created data
-
+    if os.path.isdir(r'./groups/'):
+        shutil.rmtree(r'./groups/')
+    os.mkdir(r'./groups/')
     return
 
 
