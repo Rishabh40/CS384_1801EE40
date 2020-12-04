@@ -30,9 +30,6 @@ def rename_FIR(paddingseason, paddingepisode):
     pass
 
 
-rename_FIR(5, 5)
-
-
 def rename_Game_of_Thrones(paddingseason, paddingepisode):
     # GOT rename Logic
     path = r'./Subtitles/Game of Thrones'
@@ -61,9 +58,6 @@ def rename_Game_of_Thrones(paddingseason, paddingepisode):
     pass
 
 
-rename_Game_of_Thrones(2, 3)
-
-
 def rename_Sherlock(paddingseason, paddingepisode):
     # sherlock rename Logic
     path = r'./Subtitles/Sherlock'
@@ -89,9 +83,6 @@ def rename_Sherlock(paddingseason, paddingepisode):
             os.rename(path+'/'+filename, path+'/'+'Sherlock' +
                       ' - Season '+seasonno+' Episode '+episodeno+'.srt')
     pass
-
-
-rename_Sherlock(2, 4)
 
 
 def rename_Suits(paddingseason, paddingepisode):
@@ -130,9 +121,6 @@ def rename_Suits(paddingseason, paddingepisode):
             else:
                 os.remove(path+'/'+filename)
     pass
-
-
-rename_Suits(2, 5)
 
 
 def rename_How_I_Met_Your_Mother(paddingseason, paddingepisode):
@@ -189,4 +177,33 @@ def rename_How_I_Met_Your_Mother(paddingseason, paddingepisode):
     pass
 
 
-rename_How_I_Met_Your_Mother(2, 6)
+def user_input():
+    """ Takes the intput from user and call the corresponding function acc. """
+    num = int(
+        input("Enter the corresponding number to the web series for renaming:  "))
+    season_padd = int(input("Enter the season padding: "))
+    episode_padd = int(input("Enter the episode padding: "))
+    if num == 1:
+        rename_FIR(season_padd, episode_padd)
+    elif num == 2:
+        rename_Game_of_Thrones(season_padd, episode_padd)
+    elif num == 3:
+        rename_How_I_Met_Your_Mother(season_padd, episode_padd)
+    elif num == 4:
+        rename_Sherlock(season_padd, episode_padd)
+    elif num == 5:
+        rename_Suits(season_padd, episode_padd)
+    else:
+        print("Not available try again: ")
+        user_input()
+    pass
+
+
+print("""Titles corresponding to numbers:
+    FIR: 1
+    Game of Thrones: 2
+    How I Met Your Mother: 3
+    Sherlock: 4
+    Suits: 5
+        """)
+user_input()
