@@ -88,3 +88,37 @@ def quiz_submit():
         flag = -1
     print("Quiz Submitted!!")
     pass
+
+
+def timer(t):
+    """ A GUI Based yimer which will run along with quiz """
+    global flag
+    root = Tk()
+    root.geometry("300x80")
+    root.title("Time Counter")
+
+    minute = StringVar()
+    second = StringVar()
+
+    minute.set("00")
+    second.set("00")
+
+    minuteEntry = Entry(root, width=3, font=(
+        "Arial", 18, ""), textvariable=minute)
+    minuteEntry.place(x=100, y=20)
+
+    secondEntry = Entry(root, width=3, font=(
+        "Arial", 18, ""), textvariable=second)
+    secondEntry.place(x=150, y=20)
+
+    while t > -1:
+        if flag != 1:
+            break
+        mins, secs = divmod(t, 60)
+        minute.set("{0:2d}".format(mins))
+        second.set("{0:2d}".format(secs))
+        root.update()
+        time.sleep(1)
+        t -= 1
+    if flag == 1:
+        flag = 2
