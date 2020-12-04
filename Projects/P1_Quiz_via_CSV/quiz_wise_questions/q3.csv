@@ -1,0 +1,12 @@
+ques_no,question,option1,option2,option3,option4,correct_option,marks_correct_ans,marks_wrong_ans,compulsory,time=20m
+1,The Coronavirus has originated from which country,China,Japan,India,United States,1,8,-2,y,
+2,Whihc country has highest number of Covid19 cases,China,Japan,India,United States,4,5,-1,n,
+3,Which country is now Covid19 free,India,USA,New Zealand,Pakistan,3,5,-1,n,
+4,Who is the CEO of Google,Sudar Pichai,Satya Nadella,Narendra Modi,Sachin Tendulkar,1,5,-1,y,
+5,Who is the founder/CEO of Spacex,Sundar Pichai,Lionel Messi,Elon Musk,Satya Nadella,3,5,-1,n,
+6,Which batsmen has scored most number of Double century in ODI,Chris Gayle,Virat Kholi,Rohit Sharma,Steve Smith,3,5,-1,n,
+7,How many times India has win ODI cricket World cup,1,2,3,4,2,5,-1,n,
+8,Highest Grosing movie of all time in the world,Avatar,Avenger:Endgame,Padmavati,Chennai Express,2,5,-1,n,
+9,Which actor is also know as Big B in bollywood,Salman Khan,Shahruk Khan,Amir Khan,Amitabh Bachchan,4,5,-1,n,
+10,Who was the captain of Indian Cricket Team Mens in 2011 world cup,Virat Kholi,Sachin Tendulkar,M.S. Dhoni,Yuvraj Singh,3,5,-1,y,
+

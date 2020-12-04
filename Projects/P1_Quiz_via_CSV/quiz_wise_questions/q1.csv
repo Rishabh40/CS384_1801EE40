@@ -1,0 +1,11 @@
+ques_no,question,option1,option2,option3,option4,correct_option,marks_correct_ans,marks_wrong_ans,compulsory,time=20m
+1,What is the capital of India,Mumbai,Chennai,New Delhi,Kolkata,3,5,-1,n,
+2,4+4 =,4,7,9,8,4,4,-1,y,
+3,Capital of France,Paris,Patna,Amhara,London,1,8,-2,n,
+4,The Ashes is a Test cricket series played between,England and Australia,England and New Zealand,New Zealand and Australia,South Africa and England,1,5,-1,n,
+5,The leading run scorer in world cup history is,Martin Guptill,Sachin Tendulkar,Rohit Sharma,Chris Gayle,2,5,-1,y,
+6,Which country has won the highest number of cricket world cup finals,Pakistan,Australia,India,Sri Lanka,2,5,-1,n,
+7,Taj Mahal is in which city,Jhansi,Patna,Agra,Delhi,3,5,-1,y,
+8,Which is the oldest IIT,Delhi,Kharagpur,Patna,Bombay,2,5,-1,n,
+9,Total number of IIT,15,20,22,23,4,5,-1,n,
+10,How many times Argentina has won FIFA world cup,1,2,3,4,1,5,-1,n,

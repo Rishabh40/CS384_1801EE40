@@ -1,0 +1,11 @@
+ques_no,question,option1,option2,option3,option4,correct_option,marks_correct_ans,marks_wrong_ans,compulsory,time=20m
+1,Which of the following country won Football world Cup maximum times,Germany,Italy,Argentina,Brazil,4,5,-1,n,
+2,Which country became the first nation to win the Football World Cup,Uruguay,Germany,Argentina,Belgium,1,5,-1,n,
+3,Who Has won most number of Ballon-D-Or,Cristiano Ronaldo,Michel Platini,Linonel Messi,Kevin Keegan,3,8,-2,y,
+4,which is the largest continent land area wise,Australia,Africa,Asia,Europe,3,5,-1,y,
+5,which continent has the most population,Asia,Africa,North America,South America,1,5,-1,n,
+6,whihc is the largest ocean in the world, Atlantic Ocean, Indian Ocean, Pacific Ocean,Southern Ocean,3,5,-1,n,
+7,Most pupulated city in india,Uttar Pradesh,Bihar,West Bengal,Punjab,1,5,-1,n,
+8,Total number of states in india,28,29,30,31,1,5,-1,y,
+9,Who is the current Prime Minister of India,Rahul Gandhi,Ramnath Kovind,Indira Gandhi,Narendra Modi,4,8,-2,y,
+10,Who is the current President of India,Rahul Gandhi,Ramnath Kovind,Indira Gandhi,Narendra Modi,4,8,-2,n,
