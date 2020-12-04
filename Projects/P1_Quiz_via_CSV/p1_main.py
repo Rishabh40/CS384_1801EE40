@@ -253,3 +253,57 @@ def start_quiz(rollno, Name, quiz_number):
     print("Total Correct Question Attempted: ", Correct_Choices)
     print("Total Wrong Questions Attempted: ", Wrong_choices)
     print(f'Total Marks: {Marks_Obtained}/{Total_Quiz_Marks}')
+
+
+def Login():
+    """  Logging in user  """
+    username = input("Enter your username/rollno: ")
+    # Taking PassWord in Protected Manner
+    password = gp.getpass("Enter your password: ")
+    # hashed Password
+    hashable_pw = bytes(password, encoding="utf-8")
+    c.execute("SELECT * FROM project1_registration WHERE username=?", (username,))
+    lst = c.fetchall()
+    if lst == []:
+        print("you are not registered!")
+        n = int(input("Press 1 to register and 2 to exit: "))
+        if n == 1:
+            return Registration()
+        else:
+            exit(0)
+    else:
+        if lst[0][0] == username and bcrypt.checkpw(hashable_pw, lst[0][1]):
+            print("Successfully logged in!!")
+        else:
+            print("Either Username or Password is Invalid")
+            return Login()
+    return username
+
+
+def Registration():
+    """  Registering current user  """
+    name = input("Enter your Name: ")
+    roll = input("Enter Roll Number: ")
+    # Saving PassWord in Protected Manner
+    password = gp.getpass("Enter your password: ")
+    whatsapp_number = int(input("Enter WhatsApp Number: "))
+
+    c.execute("SELECT * FROM project1_registration WHERE username=?", (roll,))
+    lst = c.fetchall()
+
+    if lst:
+        print("You are already registered! Please Login!!")
+        temp = int(input("Press 2 to Login and 1 to exit: "))
+        if temp == 2:
+            return Login()
+        else:
+            exit(0)
+
+    # hashing password
+    hashable_pw = bytes(password, encoding="utf-8")
+    hashed_pw = bcrypt.hashpw(hashable_pw, bcrypt.gensalt())
+    c.execute("INSERT INTO project1_registration VALUES(?, ?, ?, ?)",
+              (roll, hashed_pw, name, whatsapp_number))
+    conn.commit()
+    print("You are Registered!!")
+    return roll
