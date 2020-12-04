@@ -307,3 +307,83 @@ def Registration():
     conn.commit()
     print("You are Registered!!")
     return roll
+
+
+# Creating a DataBase and connecting it to this script
+conn = sqlite3.connect('project1_quiz_cs384.db')
+c = conn.cursor()
+
+# Table 1 this will store user Bio
+try:
+    c.execute("""CREATE TABLE project1_registration (
+                username text,
+                password text,
+                name text,
+                whatsappNumber integer
+                )
+            """)
+except:
+    pass
+
+
+# Table 2 this will Store User Academic data
+try:
+    c.execute("""CREATE TABLE project1_marks (
+                roll text,
+                quiz_num text,
+                total_marks integer
+                )
+            """)
+except:
+    pass
+
+# commit the changes
+conn.commit()
+
+# Asking the user what he wants to do
+Reg_log = int(input("Enter 1 to Register and 2 to Login: "))
+rollno = None
+if Reg_log == 1:
+    # Register Him if he choses so
+    rollno = Registration()
+else:
+    # Login
+    rollno = Login()
+
+
+# Creating shortcut key for users convinience during the quiz
+keyboard.add_hotkey("ctrl+alt+f", quiz_submit)
+keyboard.add_hotkey("ctrl+alt+e", extract_database, args=(rollno,))
+keyboard.add_hotkey("ctrl+alt+g", goto)
+
+
+# Fetching the name of current user from DataBase
+c.execute("SELECT * FROM project1_registration WHERE username=?", (rollno,))
+Name = c.fetchall()[0][2]
+
+# Asks the user what he want to do as now he/she is Logged in
+quiz_number = str(
+    input("Which quiz you want to take? [q1/q2/q3] or press 0 to exit: "))
+if quiz_number == '0':
+    # if he choose to exit
+    exit(0)
+elif quiz_number == 'q1' or quiz_number == 'q2' or quiz_number == 'q3':
+    # if he chooses to give a quiz that is available
+    # extracting time given
+    data = pd.read_csv(r'./quiz_wise_questions/'+quiz_number+'.csv')
+    str = list(data.columns.values.tolist())[-1]
+    te = re.findall(r'\d+', str)
+    res = int(list(map(int, te))[0])
+    t1 = threading.Thread(target=timer, args=(res*60,))
+    t2 = threading.Thread(target=start_quiz, args=(rollno, Name, quiz_number,))
+    t1.start()
+    t2.start()
+    t1.join()
+    t2.join()
+else:
+    # else letting him know chosen quiz is not available
+    print("Quiz number you entered is not available!! Press esc to exit and try again!! ")
+    keyboard.wait('esc')
+
+# closing the DataBase connection
+conn.close()
