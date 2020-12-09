@@ -110,6 +110,7 @@ def country():
     with open('./studentinfo_cs384.csv', 'r') as file:
         reader = csv.reader(file)
         pattern = re.compile(r'^$')
+        header = None
         for row in reader:
             if(row[0] == 'id'):
                 header = row
@@ -156,6 +157,7 @@ def email_domain_extract():
         reader = csv.reader(file)
         pattern = re.compile(
             r'^[a-zA-Z0-9._-]+@[a-zA-Z0-9-]+\.[a-zA-Z.]{2,18}$')
+        header = None
         for row in reader:
             if(row[0] == 'id'):
                 header = row
@@ -242,6 +244,7 @@ def dob():
         os.mkdir(final_path)
     with open('./studentinfo_cs384.csv', 'r') as file:
         reader = csv.reader(file)
+        header = None
         for row in reader:
             if(row[0] == 'id'):
                 header = row
@@ -332,6 +335,7 @@ def state():
     with open('./studentinfo_cs384.csv', 'r') as file:
         reader = csv.reader(file)
         pattern = re.compile(r'^$')
+        header = None
         for row in reader:
             if(row[0] == 'id'):
                 header = row
@@ -377,6 +381,7 @@ def blood_group():
     with open('./studentinfo_cs384.csv', 'r') as file:
         reader = csv.reader(file)
         pattern = re.compile(r'^(A|B|AB|O)[+-]$', re.IGNORECASE)
+        header = None
         for row in reader:
             if(row[0] == 'id'):
                 header = row
